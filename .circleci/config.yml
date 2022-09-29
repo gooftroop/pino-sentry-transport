@@ -1,0 +1,73 @@
+﻿version: 2.1
+orbs:
+    node: circleci/node@5.0.3
+
+executors:
+    default:
+        docker:
+            - image: node:current-buster-slim
+
+jobs:
+    build:
+        executor: default
+        environment:
+            NODE_ENV: development
+        steps:
+            - checkout
+            - node/install-packages:
+                  override-ci-command: npm install --force
+            - run: NODE_ENV=production npm run build
+            - persist_to_workspace:
+                  root: .
+                  paths:
+                      - dist
+
+    release:
+        executor: default
+        environment:
+            NODE_ENV: development
+        steps:
+            - run: apt update && apt install -y git
+            - checkout
+            - node/install-packages:
+                  override-ci-command: npm install --force
+            - attach_workspace:
+                  at: .
+            - run: npx semantic-release
+
+    test:
+        executor: default
+        environment:
+            NODE_ENV: development
+        steps:
+            - checkout
+            - node/install-packages:
+                  override-ci-command: npm install --force
+            - run: npm run lint
+            - run: npm test
+
+workflows:
+    version: 2
+    default:
+        jobs:
+            - test:
+                  filters:
+                      branches:
+                          ignore:
+                              - gh_pages
+            - build:
+                  requires:
+                      - test
+                  filters:
+                      branches:
+                          ignore:
+                              - gh_pages
+            - release:
+                  requires:
+                      - build
+                  filters:
+                      branches:
+                          only:
+                              - master
+                              - alpha
+                              - beta

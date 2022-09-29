@@ -1,92 +1,89 @@
 {
-  "name": "pino-sentry-transport",
-  "version": "0.0.6",
-  "description": "Sentry Transport for Pino",
-  "keywords": [
-    "typescript",
-    "pino",
-    "Sentry"
-  ],
-  "homepage": "https://github.com/tomer-yechiel/pino-sentry-transport",
-  "bugs": "https://github.com/tomer-yechiel/pino-sentry-transport/issues",
-  "author": "Tomer Yechiel",
-  "repository": "https://github.com/tomer-yechiel/pino-sentry-transport",
-  "main": "./build/cjs/index.js",
-  "module": "./build/esm/index.js",
-  "types": "./build/index.d.ts",
-  "license": "MIT",
-  "engines": {
-    "node": "> 14"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "setup": "node -r ./esbuild-hook ./scripts/setup",
-    "build": "npm run clean && npm run type:dts && npm run build:main",
-    "build:main": "node -r ./esbuild-hook ./scripts/build",
-    "clean": "node -r ./esbuild-hook ./scripts/clean",
-    "type:dts": "tsc --emitDeclarationOnly",
-    "type:check": "tsc --noEmit",
-    "format": "prettier \"src/**/*.ts\" --write",
-    "format:check": "prettier \"src/**/*.ts\" --check",
-    "lint": "eslint src --ext .ts --fix",
-    "lint:check": "eslint src --ext .ts",
-    "test": "vitest",
-    "test:coverage": "nyc ava && nyc report --reporter=html",
-    "test:setup": "node -r ./esbuild-hook ./scripts/testSetup",
-    "spell:check": "cspell \"{README.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,.github/*.md,src/**/*.ts}\"",
-    "cz": "cz",
-    "semantic-release": "semantic-release"
-  },
-  "devDependencies": {
-    "@ryansonshine/commitizen": "^4.2.8",
-    "@ryansonshine/cz-conventional-changelog": "^3.3.4",
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/commit-analyzer": "^9.0.2",
-    "@semantic-release/github": "^8.0.5",
-    "@semantic-release/npm": "^9.0.1",
-    "@semantic-release/release-notes-generator": "^10.0.3",
-    "@sentry/node": "^7.10.0",
-    "@sentry/types": "^7.10.0",
-    "@types/lodash.get": "^4.4.7",
-    "@types/node": "^18.7.2",
-    "@types/prompts": "^2.0.14",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "ava": "^4.3.1",
-    "cspell": "^6.6.1",
-    "dprint": "^0.30.3",
-    "esbuild": "^0.15.1",
-    "esbuild-runner": "^2.2.1",
-    "eslint": "^8.21.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-import-resolver-typescript": "^3.4.0",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.26.0",
-    "nyc": "^15.1.0",
-    "pino": "^8.4.1",
-    "prettier": "^2.7.1",
-    "prompts": "^2.4.2",
-    "semantic-release": "^19.0.3",
-    "slugify": "^1.6.5",
-    "source-map-support": "^0.5.21",
-    "typescript": "^4.7.4",
-    "vitest": "^0.21.1"
-  },
-  "peerDependencies": {
-    "@sentry/node": "^7.0.0",
-    "pino": "^7.0.0 || ^8.0.0"
-  },
-  "volta": {
-    "node": "16.15.1",
-    "npm": "8.11.0"
-  },
-  "overrides": {
-    "semver-regex": "3.1.4"
-  },
-  "dependencies": {
-    "lodash.get": "^4.4.2",
-    "pino-abstract-transport": "^1.0.0"
-  }
+    "name": "@blacklab/pino-sentry-transport",
+    "version": "0.0.6",
+    "description": "Sentry Transport for Pino",
+    "keywords": [
+        "typescript",
+        "pino",
+        "Sentry"
+    ],
+    "homepage": "https://github.com/gooftroop/pino-sentry-transport",
+    "bugs": "https://github.com/gooftroop/pino-sentry-transport/issues",
+    "author": "Tomer Yechiel, Brandon Webb",
+    "repository": "https://github.com/gooftroop/pino-sentry-transport",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/index.d.ts",
+    "license": "MIT",
+    "lint-staged": {
+        "*.ts": "npm run lint && npm run format",
+        "*.tsx": "npm run lint && npm run format"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=8.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "npm run clean && npm run ts:emit && npm run make",
+        "clean": "rimraf dist",
+        "format": "prettier-eslint \"src/**/*\" --write",
+        "lint": "eslint .",
+        "lint:fix": "npm run lint -- --fix",
+        "prepare": "is-ci || sh ./scripts/prepare.sh",
+        "make": "./scripts/build.mjs",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "ts:check": "tsc --noEmit",
+        "ts:emit": "tsc --emitDeclarationOnly --project tsconfig.build.json",
+        "spell:check": "cspell \"{README.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,.github/*.md,src/**/*.ts}\""
+    },
+    "devDependencies": {
+        "@commitlint/config-conventional": "^17.0.2",
+        "@semantic-release/changelog": "^6.0.1",
+        "@semantic-release/commit-analyzer": "^9.0.2",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^8.0.5",
+        "@semantic-release/npm": "^9.0.1",
+        "@semantic-release/release-notes-generator": "^10.0.3",
+        "@sentry/node": "^7.10.0",
+        "@sentry/types": "^7.10.0",
+        "@types/lodash.get": "^4.4.7",
+        "@types/node": "18.7.16",
+        "@typescript-eslint/eslint-plugin": "^5.36.2",
+        "@typescript-eslint/parser": "^5.36.2",
+        "commitlint": "^17.0.2",
+        "cspell": "^6.6.1",
+        "esbuild": "^0.15.1",
+        "eslint": "^8.23.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-import-resolver-typescript": "^3.5.1",
+        "eslint-plugin-import": "^2.26.0",
+        "husky": "^8.0.1",
+        "is-ci": "^3.0.1",
+        "jsdom": "^20.0.0",
+        "lint-staged": "^13.0.1",
+        "pino": "^8.4.1",
+        "prettier": "^2.7.1",
+        "prettier-eslint": "^15.0.1",
+        "rimraf": "^3.0.2",
+        "semantic-release": "^19.0.3",
+        "source-map-support": "^0.5.21",
+        "typescript": "^4.8.2",
+        "vite-tsconfig-paths": "^3.5.0",
+        "vitest": "^0.14.2"
+    },
+    "peerDependencies": {
+        "@sentry/node": "^7.0.0",
+        "@sentry/types": "^7.10.0",
+        "lodash.get": "^4.4.2",
+        "pino": "^7.0.0 || ^8.0.0",
+        "pino-abstract-transport": "^1.0.0"
+    },
+    "volta": {
+        "node": "18.7.0"
+    }
 }
