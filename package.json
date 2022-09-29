@@ -33,7 +33,7 @@
         "lint": "eslint .",
         "lint:fix": "npm run lint -- --fix",
         "prepare": "is-ci || sh ./scripts/prepare.sh",
-        "make": "./scripts/build.mjs",
+        "make": "node ./scripts/build.mjs",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
         "ts:check": "tsc --noEmit",
