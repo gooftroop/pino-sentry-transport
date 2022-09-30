@@ -10,7 +10,10 @@
     "homepage": "https://github.com/gooftroop/pino-sentry-transport#readme",
     "bugs": "https://github.com/gooftroop/pino-sentry-transport/issues",
     "author": "Tomer Yechiel, Brandon Webb",
-    "repository": "https://github.com/gooftroop/pino-sentry-transport",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:gooftroop/pino-sentry-transport.git"
+    },
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/index.d.ts",
