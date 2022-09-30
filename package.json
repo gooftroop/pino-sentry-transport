@@ -7,7 +7,7 @@
         "pino",
         "Sentry"
     ],
-    "homepage": "https://github.com/gooftroop/pino-sentry-transport",
+    "homepage": "https://github.com/gooftroop/pino-sentry-transport#readme",
     "bugs": "https://github.com/gooftroop/pino-sentry-transport/issues",
     "author": "Tomer Yechiel, Brandon Webb",
     "repository": "https://github.com/gooftroop/pino-sentry-transport",

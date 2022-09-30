@@ -1,10 +1,10 @@
 # Pino Sentry transport
 
 ![NPM](https://img.shields.io/npm/l/pino-sentry-transport)
-![NPM](https://img.shields.io/npm/v/pino-sentry-transport)
-![GitHub Workflow Status](https://github.com/tomer-yechiel/pino-sentry-transport/actions/workflows/pino-sentry-transport.yml/badge.svg?branch=main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/gooftroop/pino-sentry-transport/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/gooftroop/pino-sentry-transport/tree/main)
 
 This module provides a 'transport' for pino that sends errors to Sentry.
+
 ## Install
 
 ```shell
@@ -32,4 +32,5 @@ const logger = pino({
   },
 });
 ```
+
 if log contain error, it will send to sentry using captureException if not it will use captureMessage.
