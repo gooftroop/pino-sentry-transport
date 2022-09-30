@@ -33,7 +33,7 @@ jobs:
                   override-ci-command: npm install --force
             - attach_workspace:
                   at: .
-            - run: npx semantic-release
+            - run: npx semantic-release --debug
 
     test:
         executor: default
