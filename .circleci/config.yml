@@ -68,6 +68,6 @@ workflows:
                   filters:
                       branches:
                           only:
-                              - master
+                              - main
                               - alpha
                               - beta
