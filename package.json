@@ -12,7 +12,7 @@
     "author": "Tomer Yechiel, Brandon Webb",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gooftroop/pino-sentry-transport.git"
+        "url": "https://github.com/gooftroop/pino-sentry-transport.git"
     },
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
