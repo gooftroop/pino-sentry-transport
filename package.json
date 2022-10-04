@@ -1,6 +1,6 @@
 {
     "name": "@blacklab/pino-sentry-transport",
-    "version": "0.0.6",
+    "version": "1.0.0",
     "description": "Sentry Transport for Pino",
     "keywords": [
         "typescript",
