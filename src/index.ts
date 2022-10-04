@@ -120,6 +120,14 @@ export default async function transport(
     init(options.sentry);
 
     return build(async (source): Promise<void> => {
+        source.on('unknown', (line: string, e: Error) => {
+            captureException(e, { extra: { line } });
+        });
+
+        source.on('error', (line: string, e: Error) => {
+            captureException(e, { extra: { line } });
+        });
+
         try {
             for await (const obj of source) {
                 if (!obj) {
