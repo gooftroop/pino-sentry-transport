@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/gooftroop/pino-sentry-transport/compare/v1.0.1...v1.0.2) (2022-10-04)
+
+
+### Bug Fixes
+
+* capture error and unknown events from stream ([6be64a2](https://github.com/gooftroop/pino-sentry-transport/commit/6be64a20e978dc73017df2d53d5394ffa3c92531))
+
 ## [1.0.1](https://github.com/gooftroop/pino-sentry-transport/compare/v1.0.0...v1.0.1) (2022-10-04)
 
 
