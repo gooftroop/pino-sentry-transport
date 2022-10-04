@@ -2,8 +2,9 @@
 .github
 .husky/
 .vscode/
-node_modules/
 coverage/
+node_modules/
+release/
 scripts/
 src/
 .codeclimate.yml
