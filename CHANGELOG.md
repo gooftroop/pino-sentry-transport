@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/gooftroop/pino-sentry-transport/compare/v1.0.0...v1.0.1) (2022-10-04)
+
+
+### Bug Fixes
+
+* allow passing build options, add exception handling for default close on err ([dca6cb4](https://github.com/gooftroop/pino-sentry-transport/commit/dca6cb40bafc485ac52da0cabc5a171875757638))
+
 ## 1.0.0 (2022-10-02)
 
 
