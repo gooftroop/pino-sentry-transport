@@ -114,22 +114,14 @@ const defaultOptions: Partial<PinoSentryOptions> & { minLevel: 10, withLogRecord
 // eslint-disable-next-line import/no-default-export
 export default async function transport(
     initSentryOptions: Partial<PinoSentryOptions>,
-): Promise<ReturnType<typeof build>> {
+): Promise<ReturnType<typeof build> | null> {
     const options = { ...defaultOptions, ...initSentryOptions } as PinoSentryOptions & typeof defaultOptions;
 
     init(options.sentry);
 
-    return build(async (source): Promise<void> => {
-        source.on('unknown', (line: string, e: Error) => {
-            captureException(e, { extra: { line } });
-        });
-
-        source.on('error', (line: string, e: Error) => {
-            captureException(e, { extra: { line } });
-        });
-
-        try {
-            for await (const obj of source) {
+    try {
+        const stream = build(async (source): Promise<void> => {
+            source.on('data', (obj) => {
                 if (!obj) {
                     return;
                 }
@@ -152,15 +144,25 @@ export default async function transport(
                     // Capture exception and allow loop to continue
                     captureException(e);
                 }
-            }
-        } catch (e) {
-            // Record error and allow transport to gracefully exit to prevent breaking consumer
-            captureException(e);
-        }
-    }, {
-        close: options.close || defaultClose,
-        metadata: options.metadata,
-        parse: options.parse,
-        parseLine: options.parseLine,
-    });
+            });
+        }, {
+            close: options.close || defaultClose,
+            metadata: options.metadata,
+            parse: options.parse,
+            parseLine: options.parseLine,
+        });
+
+        stream.on('unknown', (line: string, e: Error) => {
+            captureException(e, { extra: { line } });
+        });
+
+        stream.on('error', (line: string, e: Error) => {
+            captureException(e, { extra: { line } });
+        });
+
+        return stream;
+    } catch (e) {
+        captureException(e);
+        return null;
+    }
 }
