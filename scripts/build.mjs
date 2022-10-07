@@ -11,8 +11,10 @@ const baseConfig = {
     target: 'esnext',
     format: 'cjs',
     nodePaths: [path.join(__dirname, '../src')],
+    bundle: true,
+    // minify: true,
     sourcemap: true,
-    external: [],
+    external: ['@sentry/node', 'lodash.get', 'pino', 'split2', 'readable-stream'],
 };
 
 async function main() {

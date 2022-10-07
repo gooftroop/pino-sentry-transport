@@ -12,6 +12,7 @@ module.exports = {
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:import/typescript',
+        'prettier',
     ],
     ignorePatterns: ['.eslintrc.cjs'],
     overrides: [
@@ -101,35 +102,6 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 'off',
         // Don't enforce the rule that interfaces should not be prefix with `I`
         '@typescript-eslint/interface-name-prefix': 'off',
-        // Override airbnb's typescript indent rule to:
-        // - increase spacing from 2 to 4
-        // - disable call expression indentation
-        // Keep everything else
-        '@typescript-eslint/indent': [
-            'error',
-            4,
-            {
-                SwitchCase: 1,
-                VariableDeclarator: 1,
-                outerIIFEBody: 1,
-                FunctionDeclaration: {
-                    parameters: 1,
-                    body: 1,
-                },
-                FunctionExpression: {
-                    parameters: 1,
-                    body: 1,
-                },
-                CallExpression: {
-                    arguments: 1,
-                },
-                ArrayExpression: 1,
-                ObjectExpression: 1,
-                ImportDeclaration: 1,
-                flatTernaryExpressions: false,
-                ignoreComments: false,
-            },
-        ],
         '@typescript-eslint/no-shadow': ['error'],
         '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
         '@typescript-eslint/no-use-before-define': ['error'],
