@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/gooftroop/pino-sentry-transport/compare/v1.0.3...v1.1.0) (2022-10-08)
+
+
+### Features
+
+* support node 18 stream by setting object mode when init split ([9ef8275](https://github.com/gooftroop/pino-sentry-transport/commit/9ef8275f181b4755a5be1c6252d9a4d27aef0552))
+
+
+### Bug Fixes
+
+* remove patch-package from postinstall step ([74c9888](https://github.com/gooftroop/pino-sentry-transport/commit/74c9888ea8db6c82900d0a678ead24720f9bf0de))
+
 ## [1.0.3](https://github.com/gooftroop/pino-sentry-transport/compare/v1.0.2...v1.0.3) (2022-10-04)
 
 
