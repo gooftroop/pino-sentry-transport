@@ -39,7 +39,6 @@
         "format": "prettier-eslint \"src/**/*\" --write",
         "lint": "eslint .",
         "lint:fix": "npm run lint -- --fix",
-        "postinstall": "patch-package",
         "prepare": "is-ci || sh ./scripts/prepare.sh",
         "make": "node ./scripts/build.mjs",
         "test": "vitest",
