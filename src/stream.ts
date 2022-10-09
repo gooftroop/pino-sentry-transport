@@ -118,13 +118,14 @@ export const build = <O extends BuildOptions | EnablePipelining>(
             (stream as MetadataTransform).lastObj = value;
         }
 
+        if (!Buffer.isBuffer(value)) {
+            value = JSON.stringify(value);
+        }
+
         // eslint-disable-next-line consistent-return
         return parseLines ? line : value;
     }, {
         autoDestroy: true,
-        objectMode: true,
-        readableObjectMode: true,
-        writableObjectMode: true,
     });
 
     // eslint-disable-next-line no-underscore-dangle
