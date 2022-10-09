@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.0...v1.1.1) (2022-10-08)
+
+
+### Bug Fixes
+
+* minify build ([051c064](https://github.com/gooftroop/pino-sentry-transport/commit/051c064cce30aaab6b570b71285e6a58a7dee822))
+
 ## [1.1.0](https://github.com/gooftroop/pino-sentry-transport/compare/v1.0.3...v1.1.0) (2022-10-08)
 
 
