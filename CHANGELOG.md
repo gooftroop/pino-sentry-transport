@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.1...v1.1.2) (2022-10-09)
+
+
+### Bug Fixes
+
+* remove object mode and return value as string ([6dd630d](https://github.com/gooftroop/pino-sentry-transport/commit/6dd630d4dae08329b6eb0c61e987fe64d6f62b02))
+
 ## [1.1.1](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.0...v1.1.1) (2022-10-08)
 
 
