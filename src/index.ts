@@ -11,7 +11,6 @@ import type { Scope } from '@sentry/types/types/scope';
 import { build, BuildOptions } from './stream';
 
 type Event = Record<string, Primitive> & { level: number };
-
 type PinoSentryOptions = {
     sentry: NodeOptions;
     minLevel?: number;
@@ -64,6 +63,22 @@ const defaultOptions: Partial<PinoSentryOptions> & { minLevel: 10, withLogRecord
     withLogRecord: false,
 };
 
+const deserializeError = (e: Error | string): Event & { level?: number } => {
+    if (e instanceof Error) {
+        return { err: e } as unknown as Event;
+    }
+
+    if (typeof e === 'string') {
+        try {
+            return JSON.parse(e) as Event;
+        } catch (err) {
+            // Fall through
+        }
+    }
+
+    return { err: new Error(e) } as unknown as Event;
+};
+
 // eslint-disable-next-line import/no-default-export
 export default async function transport(
     initSentryOptions: Partial<PinoSentryOptions>,
@@ -74,23 +89,32 @@ export default async function transport(
 
     try {
         const stream = build(async (source): Promise<void> => {
-            source.on('data', (obj) => {
-                if (!obj) {
+            source.on('data', (data) => {
+                if (!data) {
                     return;
                 }
 
+                const obj = {
+                    // @ts-ignore
+                    level: options.minLevel,
+                    ...deserializeError(data),
+                } as Event;
+
                 try {
-                    const serializedError = obj?.err;
+                    const serializedError = obj.err;
                     const { level } = obj;
 
-                    if (level > options.minLevel) {
+                    if (level >= options.minLevel) {
                         if (serializedError) {
                             captureException(
                                 serializedError,
                                 (scope) => enrichScope(scope, obj, options),
                             );
                         } else {
-                            captureMessage(obj.msg, (scope) => enrichScope(scope, obj as Event, options));
+                            captureMessage(
+                                (obj.msg || obj.message || obj) as string,
+                                (scope) => enrichScope(scope, obj as Event, options),
+                            );
                         }
                     }
                 } catch (e) {
