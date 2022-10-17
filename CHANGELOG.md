@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.5...v1.1.6) (2022-10-17)
+
+
+### Bug Fixes
+
+* recreate Error from error-like object ([8849636](https://github.com/gooftroop/pino-sentry-transport/commit/8849636fa17b0d935d132b57a2f49112b389ba2f))
+
 ## [1.1.5](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.4...v1.1.5) (2022-10-17)
 
 
