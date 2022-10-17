@@ -64,10 +64,6 @@ const defaultOptions: Partial<PinoSentryOptions> & { minLevel: 10, withLogRecord
 };
 
 const deserializeError = (e: Error | string): Event & { level?: number } => {
-    if (e instanceof Error) {
-        return { err: e, msg: e.message } as unknown as Event;
-    }
-
     if (typeof e === 'string') {
         try {
             const parsed = JSON.parse(e) as Event;
@@ -78,11 +74,7 @@ const deserializeError = (e: Error | string): Event & { level?: number } => {
         }
     }
 
-    if (typeof e === 'object') {
-        return e;
-    }
-
-    return { err: new Error(e), msg: e } as unknown as Event;
+    return e as unknown as Event;
 };
 
 // eslint-disable-next-line import/no-default-export
