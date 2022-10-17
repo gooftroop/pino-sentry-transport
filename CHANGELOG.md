@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.3...v1.1.4) (2022-10-17)
+
+
+### Bug Fixes
+
+* set err and msg properly ([be4e117](https://github.com/gooftroop/pino-sentry-transport/commit/be4e117a6cacbbce9bda5924f59eee8af5ad1332))
+
 ## [1.1.3](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.2...v1.1.3) (2022-10-16)
 
 
