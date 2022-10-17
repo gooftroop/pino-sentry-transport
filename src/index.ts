@@ -65,18 +65,24 @@ const defaultOptions: Partial<PinoSentryOptions> & { minLevel: 10, withLogRecord
 
 const deserializeError = (e: Error | string): Event & { level?: number } => {
     if (e instanceof Error) {
-        return { err: e } as unknown as Event;
+        return { err: e, msg: e.message } as unknown as Event;
     }
 
     if (typeof e === 'string') {
         try {
-            return JSON.parse(e) as Event;
+            const parsed = JSON.parse(e) as Event;
+
+            return { err: parsed as unknown as Primitive, level: parsed.level, msg: parsed.msg };
         } catch (err) {
             // Fall through
         }
     }
 
-    return { err: new Error(e) } as unknown as Event;
+    if (typeof e === 'object') {
+        return e;
+    }
+
+    return { err: new Error(e), msg: e } as unknown as Event;
 };
 
 // eslint-disable-next-line import/no-default-export
@@ -89,9 +95,9 @@ export default async function transport(
 
     try {
         const stream = build(async (source): Promise<void> => {
-            source.on('data', (data) => {
+            source.on('data', (data): string | undefined => {
                 if (!data) {
-                    return;
+                    return undefined;
                 }
 
                 const obj = {
@@ -106,21 +112,23 @@ export default async function transport(
 
                     if (level >= options.minLevel) {
                         if (serializedError) {
-                            captureException(
+                            return captureException(
                                 serializedError,
                                 (scope) => enrichScope(scope, obj, options),
                             );
-                        } else {
-                            captureMessage(
-                                (obj.msg || obj.message || obj) as string,
-                                (scope) => enrichScope(scope, obj as Event, options),
-                            );
                         }
+
+                        return captureMessage(
+                            (obj.msg || obj.message || obj) as string,
+                            (scope) => enrichScope(scope, obj as Event, options),
+                        );
                     }
                 } catch (e) {
                     // Capture exception and allow loop to continue
-                    captureException(e);
+                    return captureException(e);
                 }
+
+                return undefined;
             });
         }, {
             close: options.close || defaultClose,
