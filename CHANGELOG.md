@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.2...v1.1.3) (2022-10-16)
+
+
+### Bug Fixes
+
+* handle the case where data is a stringified obj, other fixes ([1c176e6](https://github.com/gooftroop/pino-sentry-transport/commit/1c176e6e61fcb855abf71430c7c4f37ec8d40d63))
+
 ## [1.1.2](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.1...v1.1.2) (2022-10-09)
 
 
