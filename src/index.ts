@@ -99,11 +99,15 @@ export default async function transport(
                 } as Event;
 
                 try {
-                    const serializedError = obj.err;
+                    const serializedErrorAsPrimitive = obj.err as unknown as Error;
                     const { level } = obj;
 
                     if (level >= options.minLevel) {
-                        if (serializedError) {
+                        if (serializedErrorAsPrimitive) {
+                            const serializedError = new Error(serializedErrorAsPrimitive.message);
+
+                            Object.assign(serializedError, serializedErrorAsPrimitive);
+
                             return captureException(
                                 serializedError,
                                 (scope) => enrichScope(scope, obj, options),
