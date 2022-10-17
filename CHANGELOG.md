@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.4...v1.1.5) (2022-10-17)
+
+
+### Bug Fixes
+
+* walk back some changes that introduced bugs ([1adfed9](https://github.com/gooftroop/pino-sentry-transport/commit/1adfed9881940792b5f1d60d31f582b614719465))
+
 ## [1.1.4](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.3...v1.1.4) (2022-10-17)
 
 
