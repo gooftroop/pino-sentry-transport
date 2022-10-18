@@ -55,6 +55,7 @@
         "@semantic-release/github": "^8.0.6",
         "@semantic-release/npm": "^9.0.1",
         "@semantic-release/release-notes-generator": "^10.0.3",
+        "@sentry/browser": "^7.15.0",
         "@sentry/node": "^7.15.0",
         "@sentry/types": "^7.15.0",
         "@types/lodash.get": "^4.4.7",
@@ -88,6 +89,7 @@
         "vitest": "^0.24.3"
     },
     "peerDependencies": {
+        "@sentry/browser": "^7.15.0",
         "@sentry/node": "^7.0.0",
         "@sentry/types": "^7.15.0",
         "lodash.get": "^4.4.2",

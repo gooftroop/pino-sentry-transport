@@ -10,9 +10,11 @@ import type { Primitive } from '@sentry/types';
 import type { Scope } from '@sentry/types/types/scope';
 import { build, BuildOptions } from './stream';
 
+export { create } from './browser';
+
 type Event = Record<string, Primitive> & { level: number };
 type PinoSentryOptions = {
-    sentry: NodeOptions;
+    sentry?: NodeOptions;
     minLevel?: number;
     withLogRecord?: boolean;
     tags?: string[];
@@ -108,7 +110,9 @@ export default async function transport(
 ): Promise<ReturnType<typeof build> | null> {
     const options = { ...defaultOptions, ...initSentryOptions } as PinoSentryOptions & typeof defaultOptions;
 
-    init(options.sentry);
+    if (options.sentry) {
+        init(options.sentry);
+    }
 
     try {
         const stream = build(async (source): Promise<void> => {
