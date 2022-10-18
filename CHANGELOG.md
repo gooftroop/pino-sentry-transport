@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.6...v1.1.7) (2022-10-18)
+
+
+### Bug Fixes
+
+* properly ensure error is type Error ([3acd5b9](https://github.com/gooftroop/pino-sentry-transport/commit/3acd5b9e8be7c5a0e4cf9ecefceee725a85fa5f3))
+
 ## [1.1.6](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.5...v1.1.6) (2022-10-17)
 
 
