@@ -22,7 +22,7 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,
-        "sourceRoot": "./src",
+        "sourceRoot": "/",
         "strict": true,
         "target": "ES2022",
         "useDefineForClassFields": true

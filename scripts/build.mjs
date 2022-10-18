@@ -22,6 +22,7 @@ async function main() {
         ...baseConfig,
         outdir: path.join(__dirname, '../dist/cjs'),
         entryPoints: [path.join(__dirname, '../src/index.ts')],
+        // sourceRoot: 'dist/cjs',
     });
 
     await esbuild({
@@ -29,6 +30,7 @@ async function main() {
         format: 'esm',
         outdir: path.join(__dirname, '../dist/esm'),
         entryPoints: [path.join(__dirname, '../src/index.ts')],
+        // sourceRoot: 'dist/esm',
     });
 }
 

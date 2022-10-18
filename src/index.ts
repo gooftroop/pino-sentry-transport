@@ -68,13 +68,38 @@ const deserializeError = (e: Error | string): Event & { level?: number } => {
         try {
             const parsed = JSON.parse(e) as Event;
 
-            return { err: parsed as unknown as Primitive, level: parsed.level, msg: parsed.msg };
+            return ('err' in parsed) ? parsed : {
+                err: parsed as unknown as Primitive,
+                level: parsed.level,
+                msg: parsed.msg || parsed.message || e,
+            };
         } catch (err) {
             // Fall through
         }
     }
 
     return e as unknown as Event;
+};
+
+const ensureErrorType = (obj: unknown): Error => {
+    if (obj instanceof Error) {
+        return obj;
+    }
+
+    const error = new Error(typeof obj === 'string'
+        ? obj
+        : ((obj as Error).message || (obj as Event).msg as string || 'Unknown Error'),
+    );
+
+    if ((obj as Error).stack) {
+        error.stack = (obj as Error).stack;
+    }
+
+    if ((obj as Error).name) {
+        error.name = (obj as Error).name;
+    }
+
+    return error;
 };
 
 // eslint-disable-next-line import/no-default-export
@@ -99,23 +124,20 @@ export default async function transport(
                 } as Event;
 
                 try {
-                    const serializedErrorAsPrimitive = obj.err as unknown as Error;
-                    const { level } = obj;
+                    const { level, err } = obj;
 
                     if (level >= options.minLevel) {
-                        if (serializedErrorAsPrimitive) {
-                            const serializedError = new Error(serializedErrorAsPrimitive.message);
-
-                            Object.assign(serializedError, serializedErrorAsPrimitive);
+                        if (err) {
+                            const error = ensureErrorType(err);
 
                             return captureException(
-                                serializedError,
+                                error,
                                 (scope) => enrichScope(scope, obj, options),
                             );
                         }
 
                         return captureMessage(
-                            (obj.msg || obj.message || obj) as string,
+                            (obj.msg || obj.message || typeof obj === 'object' ? JSON.stringify(obj) : obj) as string,
                             (scope) => enrichScope(scope, obj as Event, options),
                         );
                     }
