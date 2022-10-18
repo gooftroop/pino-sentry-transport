@@ -10,7 +10,7 @@ import type { Primitive } from '@sentry/types';
 import type { Scope } from '@sentry/types/types/scope';
 import { build, BuildOptions } from './stream';
 
-export { create } from './browser';
+export { browser } from './browser';
 
 type Event = Record<string, Primitive> & { level: number };
 type PinoSentryOptions = {

@@ -34,7 +34,7 @@ const captureException = (o: object): void => {
     Sentry.captureException(e, o);
 };
 
-export const create = (options: Options = {}): PinoBrowserOptions => {
+export const browser = (options: Options = {}): PinoBrowserOptions => {
     const { sentry, ...rest } = options;
 
     if (!sentry) {
