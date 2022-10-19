@@ -1,3 +1,16 @@
+## [1.2.0](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.7...v1.2.0) (2022-10-18)
+
+
+### Features
+
+* add browser write support ([01aa80c](https://github.com/gooftroop/pino-sentry-transport/commit/01aa80c00807e5a32cf0feeed4783833b8cd1a1a))
+
+
+### Bug Fixes
+
+* browser fn nain ([bb58e51](https://github.com/gooftroop/pino-sentry-transport/commit/bb58e5193a71baa0e984d177ae64f80006fa8c42))
+* make browser options optional ([a0f22f9](https://github.com/gooftroop/pino-sentry-transport/commit/a0f22f975ae07230a55efa5477e243f6e54bee16))
+
 ## [1.1.7](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.6...v1.1.7) (2022-10-18)
 
 
