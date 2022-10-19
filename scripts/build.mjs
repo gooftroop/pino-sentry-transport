@@ -3,6 +3,8 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { build as esbuild } from 'esbuild';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { nodeExternalsPlugin } from 'esbuild-node-externals';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,25 +14,24 @@ const baseConfig = {
     format: 'cjs',
     nodePaths: [path.join(__dirname, '../src')],
     bundle: true,
-    minify: true,
+    // minify: true,
     sourcemap: true,
-    external: ['@sentry/node', 'lodash.get', 'pino', 'split2', 'readable-stream'],
+    // external: ['./node_modules/*'],
+    plugins: [nodeExternalsPlugin()],
 };
 
 async function main() {
     await esbuild({
         ...baseConfig,
-        outdir: path.join(__dirname, '../dist/cjs'),
+        outfile: path.join(__dirname, '../dist/cjs/index.cjs'),
         entryPoints: [path.join(__dirname, '../src/index.ts')],
-        // sourceRoot: 'dist/cjs',
     });
 
     await esbuild({
         ...baseConfig,
         format: 'esm',
-        outdir: path.join(__dirname, '../dist/esm'),
+        outfile: path.join(__dirname, '../dist/esm/index.js'),
         entryPoints: [path.join(__dirname, '../src/index.ts')],
-        // sourceRoot: 'dist/esm',
     });
 }
 

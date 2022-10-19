@@ -1,10 +1,10 @@
 import { LoggerOptions } from 'pino';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Sentry, { BrowserOptions as SentryBrowserOptions } from '@sentry/browser';
+import * as Sentry from '@sentry/browser';
 
 type PinoBrowserOptions = LoggerOptions['browser'];
 type Options = Partial<Omit<PinoBrowserOptions, 'write'>> & {
-    sentry?: SentryBrowserOptions;
+    sentry?: Sentry.BrowserOptions;
 };
 
 const captureException = (o: object): void => {
