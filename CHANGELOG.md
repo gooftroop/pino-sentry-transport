@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.0...v1.2.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* build output formats to properly support cjs and esm ([2bec790](https://github.com/gooftroop/pino-sentry-transport/commit/2bec79054be8a2ef390f03b2b04be692ee4012e6))
+* test by using built cjs file ([f06ef72](https://github.com/gooftroop/pino-sentry-transport/commit/f06ef721cb2f30322f8d35c30b7daa58b6264d5b))
+
 ## [1.2.0](https://github.com/gooftroop/pino-sentry-transport/compare/v1.1.7...v1.2.0) (2022-10-18)
 
 
