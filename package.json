@@ -42,7 +42,7 @@
         "lint:fix": "npm run lint -- --fix",
         "prepare": "is-ci || sh ./scripts/prepare.sh",
         "make": "node ./scripts/build.mjs",
-        "test": "vitest",
+        "test": "npm run build && vitest",
         "test:coverage": "vitest run --coverage",
         "ts:check": "tsc --noEmit",
         "ts:emit": "tsc --emitDeclarationOnly --project tsconfig.build.json",

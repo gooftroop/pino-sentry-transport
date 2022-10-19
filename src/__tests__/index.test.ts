@@ -3,7 +3,7 @@ import pino, { transport } from 'pino';
 import { test } from 'vitest';
 
 const t = transport({
-    target: '../index.ts',
+    target: '../../dist/cjs/index.cjs',
     options: {
         sentry: {
             dsn: '',
