@@ -15,13 +15,19 @@
         "url": "git+https://github.com/gooftroop/pino-sentry-transport.git"
     },
     "exports": {
-        "import": "./dist/esm/index.js",
-        "require": "./dist/cjs/index.cjs"
+        "./browser": {
+            "import": "./dist/esm/browser.js",
+            "require": "./dist/cjs/browser.cjs"
+        },
+        ".": {
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.cjs"
+        }
     },
+    "browser": "./dist/cjs/browser.cjs",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "type": "module",
-    "types": "./dist/index.d.ts",
     "license": "MIT",
     "lint-staged": {
         "*.ts": "npm run lint && npm run format",
@@ -35,7 +41,7 @@
         "access": "public"
     },
     "scripts": {
-        "build": "npm run clean && npm run ts:emit && npm run make",
+        "build": "npm run clean && npm run make",
         "clean": "rimraf dist",
         "format": "prettier-eslint \"src/**/*\" --write",
         "lint": "eslint .",
@@ -45,7 +51,7 @@
         "test": "npm run build && vitest",
         "test:coverage": "vitest run --coverage",
         "ts:check": "tsc --noEmit",
-        "ts:emit": "tsc --emitDeclarationOnly --project tsconfig.build.json",
+        "ts:emit": "tsc --emitDeclarationOnly ",
         "spell:check": "cspell \"{README.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,.github/*.md,src/**/*.ts}\""
     },
     "devDependencies": {
