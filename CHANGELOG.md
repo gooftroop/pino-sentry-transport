@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.1...v1.2.2) (2022-10-21)
+
+
+### Bug Fixes
+
+* proper import and typing resolution for browser ([4fff8e6](https://github.com/gooftroop/pino-sentry-transport/commit/4fff8e685384468b5fa2a6e68f478f8f63127af3))
+
 ## [1.2.1](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.0...v1.2.1) (2022-10-19)
 
 
