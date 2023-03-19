@@ -24,14 +24,10 @@
             "require": "./dist/cjs/index.cjs"
         }
     },
-    "browser": "./dist/cjs/browser.cjs",
-    "main": "./dist/cjs/index.js",
-    "module": "./dist/esm/index.js",
     "type": "module",
     "license": "MIT",
     "lint-staged": {
-        "*.ts": "npm run lint && npm run format",
-        "*.tsx": "npm run lint && npm run format"
+        "*.(t|j)s(x)?": "npm run lint && npm run format"
     },
     "engines": {
         "node": ">=18.0.0",
