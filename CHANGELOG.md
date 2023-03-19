@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.2...v1.2.3) (2023-03-19)
+
+
+### Bug Fixes
+
+* remove legacy package entry points in favor of exports ([e78e74b](https://github.com/gooftroop/pino-sentry-transport/commit/e78e74b72578aa496ddbe534383d1bea6c1a9659))
+
 ## [1.2.2](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.1...v1.2.2) (2022-10-21)
 
 
