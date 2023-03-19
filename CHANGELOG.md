@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.3...v1.2.4) (2023-03-19)
+
+
+### Bug Fixes
+
+* add exports field for types ([aa2e8ee](https://github.com/gooftroop/pino-sentry-transport/commit/aa2e8eecfab04510966d536c01d5f9f911ec6011))
+
 ## [1.2.3](https://github.com/gooftroop/pino-sentry-transport/compare/v1.2.2...v1.2.3) (2023-03-19)
 
 
